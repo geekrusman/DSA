@@ -1,18 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <linked_list.h>
+#include "linked_list.h"
 
 //sll init
 sll_list*
 sll_init()
 {
-	sll_list *list = (sll_list)malloc(sizeof(sll_list*));
-	assert(list, "memory failure");
+	sll_list *list = (sll_list*)malloc(sizeof(sll_list*));
+	assert(list);
 
 	list->head = NULL;
 	return list;
 }
+
+/*
+ * Input : single linked list, data
+ * Creates a node at last and inserts
+ * the given data in that node. 	
+ */
 
 sll_list*
 sll_insert_end(sll_list *list, int data)
@@ -21,7 +27,7 @@ sll_insert_end(sll_list *list, int data)
 
 	//initiate the sll_node
 	sll_node *node = (sll_node*)malloc(sizeof(sll_node));
-	assert(node, "memory failure");
+	assert(node);
 	node->data = data;
 	node->next = NULL;
 
@@ -40,11 +46,18 @@ sll_insert_end(sll_list *list, int data)
 	return list;
 }
 
+/*
+ * Input : SLL and index number to delete
+ * If index is less than 0 (errors out)
+ * If index is greater than the length of the
+ * linked list, then the last node is deleted.
+ */
+
 sll_list*
 sll_delete_at(sll_list *list, int index)
 {
 	assert(list);
-	assert(index>=0, "Index should be greated than 0");
+	assert(index>=0);
 	int cnt = 0;
 	
 	//empty case
@@ -55,15 +68,31 @@ sll_delete_at(sll_list *list, int index)
 
 	//non empty case
 	sll_node *ptr = list->head;
-	while (cnt < index-1) {
+	while (cnt < index-1 && ptr->next != NULL ) {
 		ptr = ptr->next;
 		cnt++;
 	}
 	sll_node *temp = ptr->next;
 	
-	ptr->next = temp->next;
-	free(temp);
-	printf("Deleted index %d", index);
+	if (temp == NULL)
+		ptr->next = NULL;
+	else {
+		ptr->next = temp->next;
+		free(temp);
+	}
+	printf("Deleted index %d\n", index);
 	return list;		
+}
+
+void
+sll_printall(sll_list *list)
+{
+	sll_node *ptr = list->head;
+	
+	while (ptr != NULL) {
+		printf("%d--", ptr->data);
+		ptr = ptr->next;
+	}
+	printf("NULL\n");
 }
 

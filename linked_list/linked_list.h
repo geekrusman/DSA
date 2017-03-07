@@ -2,7 +2,7 @@
 
 struct sll_node {
 	int data;
-	struct ll_node *next;
+	struct sll_node *next;
 };
 
 typedef struct sll_node sll_node;
@@ -24,6 +24,10 @@ sll_insert_end(sll_list* , int );
 //delete
 sll_list*
 sll_delete_at(sll_list*, int );
+
+//print
+void
+sll_printall(sll_list *);
 
 //reverse
 sll_list*
