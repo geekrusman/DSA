@@ -15,5 +15,8 @@ int main()
 
 	mylist = sll_delete_at(mylist, 9);
 	sll_printall(mylist);
+
+	mylist = sll_reverse(mylist);
+	sll_printall(mylist);
 }
 

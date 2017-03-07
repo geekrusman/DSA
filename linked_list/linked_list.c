@@ -96,3 +96,22 @@ sll_printall(sll_list *list)
 	printf("NULL\n");
 }
 
+sll_list*
+sll_reverse(sll_list* list)
+{
+	assert(list);
+	sll_node *t1 = NULL;
+	sll_node *t2 = NULL;
+	
+	do {
+		t2 = list->head->next;
+		if (t2 == NULL) {
+			list->head->next = t1;
+			break;
+		}
+		list->head->next = t1;
+		t1 = list->head;
+		list->head = t2;
+	} while (t2 != NULL);
+	return list;
+}
