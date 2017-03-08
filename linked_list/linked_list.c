@@ -115,3 +115,8 @@ sll_reverse(sll_list* list)
 	} while (t2 != NULL);
 	return list;
 }
+
+sll_list*
+sll_reverse_knodes(sll_list *list, int k)
+{
+}
