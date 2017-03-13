@@ -18,5 +18,8 @@ int main()
 
 	mylist = sll_reverse(mylist);
 	sll_printall(mylist);
+
+	mylist = sll_reverse_knodes_list(mylist, 2);
+	sll_printall(mylist);
 }
 

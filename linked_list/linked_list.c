@@ -116,7 +116,49 @@ sll_reverse(sll_list* list)
 	return list;
 }
 
-sll_list*
-sll_reverse_knodes(sll_list *list, int k)
+sll_node*
+sll_reverse_knodes(sll_node **head, int k)
 {
+	assert(head);
+	sll_node *t1 = NULL;
+	sll_node *t2 = NULL;
+	sll_node *prev_head = *head;
+	int cnt = 0;
+	
+	do {
+		t2 = (*head)->next;
+		if (t2 == NULL ) {
+			(*head)->next = t1;
+			break;
+		}
+		if (cnt == k-1) {
+			(*head)->next = t1;
+			prev_head->next = sll_reverse_knodes(&t2, k);
+			break;
+		}
+		(*head)->next = t1;
+		t1 = *head;
+		*head = t2;
+		cnt++;
+
+	} while (t2 != NULL);
+	return *head;
+}
+
+sll_list*
+sll_reverse_knodes_list(sll_list *list, int k)
+{
+	assert(list);
+	sll_node *t1 = NULL;
+	sll_node *t2 = NULL;
+	sll_node *prev_head = list->head;
+	int cnt = 0;
+	
+	assert(k>=0);
+	if ( k == 0 | k == 1 )
+		return list;
+	
+	list->head = sll_reverse_knodes(&list->head, k);
+	return list;
+
 }

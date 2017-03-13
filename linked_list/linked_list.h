@@ -35,4 +35,4 @@ sll_reverse(sll_list* );
 
 //reverse in blocks of k
 sll_list*
-sll_reverse_knodes(sll_list* , int );
+sll_reverse_knodes_list(sll_list* , int );
