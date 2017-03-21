@@ -162,3 +162,60 @@ sll_reverse_knodes_list(sll_list *list, int k)
 	return list;
 
 }
+
+int
+sll_size(sll_list *list)
+{
+	if (list == NULL || list->head == NULL)
+		return 0;
+	sll_node *temp = list->head;
+	int size = 0;
+
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		size++;
+	}
+	return size;
+}
+
+sll_list*
+sll_rotate_k(sll_list *list, int k)
+{
+	assert(k >= 0);
+	int cnt = 0;
+	int size = 0;
+	sll_node *temp = NULL;
+	sll_node *temp2 = NULL;
+	sll_node *temp3 = NULL;
+
+	if (list == NULL || list->head == NULL || k == 0)
+		return list;
+
+	size = sll_size(list);
+
+	if (k >= size)
+		return list;
+
+	temp = list->head;
+
+	while (cnt < k-1)
+	{
+		cnt++;
+		temp = temp->next;
+	}
+
+	temp2 = temp->next;
+	temp->next = NULL;
+
+	temp3 = temp2;
+
+	while (temp3->next != NULL)
+	{
+		temp3 = temp3->next;
+	}
+	temp3->next = list->head;
+	list->head = temp2;
+
+	return list;
+}

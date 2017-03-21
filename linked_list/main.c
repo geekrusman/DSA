@@ -21,5 +21,8 @@ int main()
 
 	mylist = sll_reverse_knodes_list(mylist, 2);
 	sll_printall(mylist);
+
+	mylist = sll_rotate_k(mylist, 9);
+	sll_printall(mylist);
 }
 

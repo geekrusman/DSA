@@ -36,3 +36,11 @@ sll_reverse(sll_list* );
 //reverse in blocks of k
 sll_list*
 sll_reverse_knodes_list(sll_list* , int );
+
+//size of linked list
+int
+sll_size(sll_list *);
+
+//rotate a linked list by k nodes
+sll_list*
+sll_rotate_k(sll_list* , int k);
