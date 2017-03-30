@@ -74,9 +74,11 @@ stock_span(int *price, int n)
 			}
 			list = ll_add(list, price[itr]);
 			int itr2 = 1;
-			for( ; itr2 <= index ; itr2++)
+			int cnt = 0;
+			for( ; cnt < index ;cnt++ )
 			{
 				span[itr] = span[itr] + span[itr-itr2];
+				itr2 = itr2 + span[itr-itr2];
 			}
 			span[itr] = span[itr] + 1;
 		}
@@ -91,6 +93,6 @@ stock_span(int *price, int n)
 
 int main()
 {
-	int price[] = {100 ,80, 60 ,70, 60, 75, 85};
-	stock_span(price, 7);
+	int price[] = {100, 60 ,70, 65, 80, 85};
+	stock_span(price, 6);
 }
